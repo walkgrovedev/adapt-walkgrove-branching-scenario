@@ -1,4 +1,53 @@
 <div class="component__inner branchingScenario__inner">
   {{> component this}}
+
+  <div class="branchingScenario__main">
+  <div class="branchingScenario__main-inner">
+    {{#each _items}}
+      <div class="branchingScenario__widget" data-index="{{@index}}" data-path="{{_id}}" id="{{_id}}">
+        
+        {{#if content}} <div class="branchingScenario__content" >{{{content}}}</div>{{/if}}
+
+        {{#if _scenario}} 
+          <div class="branchingScenario__scenario-container" >
+            {{#each _scenario}}
+              <div class="branchingScenario__scenario {{_layout}}" >
+                {{#if _image}} <img class="branchingScenario__scenario-image" src="{{_image}}" />{{/if}}
+                {{#if speech}} <div class="branchingScenario__scenario-speech {{_speechPos}}">{{{speech}}}</div>{{/if}}
+              </div>
+            {{/each}}
+          </div>
+        {{/if}}
+
+        {{#if question}}
+          <div class="branchingScenario__interactive">
+            {{#if question}} <div class="branchingScenario__question" >{{{question}}}</div>{{/if}}
+
+            {{#if _choices}} 
+              <div class="branchingScenario__buttons button">
+                {{#each _choices}}
+                  <button class="branchingScenario__btn btn js-branching-choice-click" aria-label="{{{choice}}}" data-path="{{_pathID}}">
+                    {{{choice}}}
+                  </button>
+                {{/each}}
+              </div>
+            {{/if}}
+          </div>
+        {{/if}}
+
+      </div>
+    {{/each}}
+
+    <div class="branchingScenario__buttons-end" data-path="{{_completeID}}" >
+      <button class="branchingScenario__btn btn js-branching-continue-click" aria-label="{{{_buttons.continue}}}" >
+          {{{_buttons.continue}}}
+      </button>
+      <button class="branchingScenario__btn btn js-branching-restart-click" aria-label="{{{_buttons.restart}}}" >
+          {{{_buttons.restart}}}
+      </button>
+    </div>
+
+  </div>
+  </div>
   
 </div>

@@ -1,3 +1,218 @@
 .branchingScenario {
+    position: relative;
     
+    &__main{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    } 
+
+    &__main-inner {
+        width: 75%;
+
+        @media (max-width: @device-width-small) {
+            width: 100%;
+        }
+    }
+    
+    &__widget {
+        display: none;
+        opacity: 0;
+
+        &.is-visible {
+            display: block;
+            opacity: 1;
+            animation: fadeIn;
+            animation-duration: 1s;
+        }
+    }
+    
+    &__buttons, &__buttons-end {
+        justify-content: center;
+        flex: 0 0 auto;
+        display: flex;
+
+        @media (max-width: @device-width-small) {
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+    }
+
+    &__btn {
+        margin: 2rem 1rem 1rem 0;
+
+        width: auto;
+        max-width: 47%;
+
+        &.is-chosen {
+            background-color: @black!important;
+        }
+
+        &[disabled] {
+            background-color: @grey;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        @media (max-width: @device-width-small) {
+            width: 100%;
+            max-width: 100%;
+            margin: 1rem 0 0 0;
+        }
+    }
+
+    &__buttons-end {
+        display: none;
+        opacity: 0;
+
+        background-color: @item-color;
+        color: @item-color-inverted;
+
+        &.is-visible {
+            display: flex;
+            opacity: 1;
+            animation: fadeIn;
+            animation-duration: 1s;
+        }
+
+        .branchingScenario__btn {
+            margin: 0 1rem 2rem 0;
+    
+            width: auto;
+            max-width: 47%;
+
+            background-color: @white!important;
+            color: @item-color!important;
+
+            &:hover {
+                background-color: @black!important;
+                color: @white!important;
+            }
+
+            @media (max-width: @device-width-small) {
+                width: 100%;
+                max-width: 100%;
+                margin: 1rem 0 0 0;
+            }
+        }
+    }
+    
+    
+
+    &__interactive {
+        font-weight: 400;
+        border: 2px solid @item-color;
+        margin-bottom: 1rem;
+    }
+
+    &__content, &__interactive {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+    }
+
+    &__content{
+        // margin: 0 0 1rem 0;
+        background-color: @item-color;
+        color: @item-color-inverted;
+    }
+
+    &__question {
+        color:@item-color;
+        font-weight: 700;
+        font-size: 1.2em;
+    }
+
+    &__scenario-container {
+        height: auto;
+        display: inline-block;
+        margin-top: 1rem;
+    }
+    
+    &__scenario {
+        float: left;
+        position:relative;
+        
+        &.third {
+            width: 33.3%;
+
+            @media (max-width: @device-width-small) {
+                width: 100%;
+            }
+        }
+        
+        &.half {
+            width: 50%;
+
+            @media (max-width: @device-width-small) {
+                width: 100%;
+            }
+        }
+
+        &.two-thirds {
+            width: 66.6%;
+
+            @media (max-width: @device-width-small) {
+                width: 100%;
+            }
+        }
+
+        &.full {
+            width: 100%;
+        }
+    }
+
+    &__scenario-image {
+        width: 100%;
+        height: auto;
+    }
+
+    &__scenario-speech {
+        position: relative;
+        background-color: @primary-colour;
+        color: @item-color-inverted;
+        padding: 1rem;
+        margin-bottom: 1rem;
+
+        &.left {
+            &:before {
+                left: 15%;
+            }
+        }
+
+        &.right {
+            &:before {
+                right: 15%;
+            }
+        }
+
+        &.middle {
+            &:before {
+                left: 50%;
+            }
+        }
+        
+        &:before {
+            content: "";
+            width: 0; 
+            height: 0; 
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid @primary-colour;
+            top: -10px;
+            position: absolute;
+        }
+    }
+
+    &__scenario:nth-child(even) {
+
+        .branchingScenario__scenario-speech {
+            background-color: @item-color;
+
+            &:before {
+                border-bottom: 10px solid @item-color;
+            }
+        }
+    }
+
 }

@@ -6,12 +6,20 @@ define([
 
   var BranchingScenarioView = ComponentView.extend({
 
+    events: {
+      'click .js-branching-choice-click': 'onChoiceClicked',
+      'click .js-branching-continue-click': 'onContinueClicked',
+      'click .js-branching-restart-click': 'onRestartClicked'
+    },
+    
     preRender: function() {
       this.checkIfResetOnRevisit();
     },
 
     postRender: function() {
       this.setReadyStatus();
+      // show the first step of the scenario
+      this.$('.branchingScenario__widget').eq(0).addClass('is-visible');
     },
 
     checkIfResetOnRevisit: function() {
@@ -21,7 +29,43 @@ define([
       if (isResetOnRevisit) {
         this.model.reset(isResetOnRevisit);
       }
+    },
+
+    onChoiceClicked: function(event) {
+        // set the buttons to diabled
+        $(event.currentTarget).parent().children('.branchingScenario__btn').prop('disabled', true); 
+        // show which option was selected
+        $(event.currentTarget).addClass('is-chosen');
+        // set the data path element to visible
+        var pathID = $(event.currentTarget).data('path');
+        this.$('[data-path="' + pathID + '"]').addClass('is-visible');
+      
+        // const el = document.getElementById('' + pathID + '');
+        // const scrollTo = el.scrollTop();
+        // window.scroll(scrollTo, 0);
+
+        const divName = "#" + pathID + "";
+        const element = document.querySelector(divName);
+        // scroll to element
+        setTimeout(function(){
+          element.scrollIntoView(false);
+         }, 100);
+
+    },
+
+    onContinueClicked: function() {
+      this.setCompletionStatus();
+      console.log("completed scenario");
+    },
+
+    onRestartClicked: function() {
+      this.$('.branchingScenario__widget').removeClass('is-visible');
+      this.$('.branchingScenario__buttons-end').removeClass('is-visible');
+      this.$('.branchingScenario__widget').eq(0).addClass('is-visible');
+      this.$('.branchingScenario__btn').prop('disabled', false); 
+      this.$('.branchingScenario__btn').removeClass('is-chosen'); 
     }
+
   },
   {
     template: 'branchingScenario'
