@@ -55,7 +55,7 @@ define([
 
     onContinueClicked: function() {
       this.setCompletionStatus();
-      console.log("completed scenario");
+      this.$('.branchingScenario__continue').removeClass('is-visible');
     },
 
     onRestartClicked: function() {

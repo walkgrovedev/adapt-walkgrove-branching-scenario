@@ -15,7 +15,7 @@
         }
     }
     
-    &__widget {
+    &__widget, &__continue {
         display: none;
         opacity: 0;
 
@@ -40,6 +40,7 @@
 
     &__btn {
         margin: 2rem 1rem 1rem 0;
+        border-radius: 1rem;
 
         width: auto;
         max-width: 47%;
@@ -67,6 +68,7 @@
 
         background-color: @item-color;
         color: @item-color-inverted;
+        border-radius: 0 0 1rem 1rem;
 
         &.is-visible {
             display: flex;
@@ -103,6 +105,7 @@
         font-weight: 400;
         border: 2px solid @item-color;
         margin-bottom: 1rem;
+        border-radius: 0 0 1rem 1rem;
     }
 
     &__content, &__interactive {
@@ -115,6 +118,7 @@
         // margin: 0 0 1rem 0;
         background-color: @item-color;
         color: @item-color-inverted;
+        border-radius: 1rem 1rem 0 0;
     }
 
     &__question {
@@ -126,7 +130,7 @@
     &__scenario-container {
         height: auto;
         display: inline-block;
-        margin-top: 1rem;
+        // margin-top: 1rem;
     }
     
     &__scenario {
@@ -172,24 +176,28 @@
         background-color: @primary-colour;
         color: @item-color-inverted;
         padding: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
+        margin-top: 2px;
 
         &.left {
             &:before {
                 left: 15%;
             }
+            border-radius: 0 1rem 0 1rem;
         }
 
         &.right {
             &:before {
                 right: 15%;
             }
+            border-radius: 1rem 0 1rem 0;
         }
 
         &.middle {
             &:before {
                 left: 50%;
             }
+            border-radius: 0 0 1rem 1rem;
         }
         
         &:before {

@@ -1,15 +1,85 @@
-    {
-        "_id": "c-05",
-        "_parentId": "b-05",
-        "_type": "component",
-        "_component": "branchingScenario",
-        "_classes": "",
-        "_layout": "left",
-        "title": "Our first look at a component",
-        "displayTitle": "Our first look at a component",
-        "body": "This component you're reading is a text component. All components take this form of a title and body - except a blank component. However it's important to realise that title and body attributes are not needed. <br><br>Take for instance the media component opposite or below on a smaller device - has no body attribute. Instead of the HTML being rendered Adapt simply doesn't render it. The title attribute is simply a break tag to push the media component level with the opposite component.",
-        "instruction": "",
-        "_pageLevelProgress": {
-            "_isEnabled": true
+{
+    "_id": "c-05",
+    "_parentId": "b-05",
+    "_type": "component",
+    "_component": "branchingScenario",
+    "_classes": "",
+    "_layout": "full",
+    "title": "Branching Scenario component",
+    "displayTitle": "Branching Scenario component",
+    "body": "Introductory content for branching scenario ...",
+    "instruction": "Follow the scenario and <strong>make your choices</strong> below.",
+    "_buttons": {
+        "continue": "Continue",
+        "restart": "Restart"
+    },
+    "_completeID": "B",
+    "_items": [
+        {
+            "_id": "A",
+            "_scenario": [
+                {
+                    "_layout": "half",
+                    "_image": "https://via.placeholder.com/456x280",
+                    "_speechPos": "left",
+                    "speech": "This is character 1's speech..."
+                },
+                {
+                    "_layout": "half",
+                    "_image": "https://via.placeholder.com/456x280",
+                    "_speechPos": "right",
+                    "speech": "This is character 2's speech ..."
+                },
+                {
+                    "_layout": "full",
+                    "_image": "https://via.placeholder.com/912x400",
+                    "_speechPos": "middle",
+                    "speech": "Speech ..."
+                }
+            ],
+            "question": "What should character 1 do?",
+            "_choices": [
+                {
+                    "choice" : "Go to the next Branch of the scenario",
+                    "_pathID": "AA"
+                },
+                {
+                    "choice" : "Go to the End of the scenario",
+                    "_pathID": "B"
+                }
+            ]
+        },
+        {
+            "_id": "AA",
+            "content": "You've chosen choice 'Branch' ...",
+            "_scenario": [
+                {
+                    "_layout": "third",
+                    "_image": "https://via.placeholder.com/304x280",
+                    "_speechPos": "right",
+                    "speech": "Character 1's speech..."
+                },
+                {
+                    "_layout": "two-thirds",
+                    "_image": "https://via.placeholder.com/608x280",
+                    "_speechPos": "left",
+                    "speech": "This is character 2's speech ...<br/>"
+                }
+            ],
+            "question": "Select the choice to end the scenario ...",
+            "_choices": [
+                {
+                    "choice" : "Go to the End of the scenario",
+                    "_pathID": "B"
+                }
+            ]
+        },
+        {
+            "_id": "B",
+            "content": "<h3>That's the end of this scenario!</h3><p>Choose from the options below:</p>"
         }
+    ],
+    "_pageLevelProgress": {
+        "_isEnabled": false
     }
+}
