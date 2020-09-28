@@ -55,10 +55,12 @@
             cursor: default;
         }
 
-        @media (max-width: @device-width-small) {
-            width: 100%;
-            max-width: 100%;
-            margin: 1rem 0 0 0;
+        &.js-branching-choice-click {
+            @media (max-width: @device-width-small) {
+                width: 100%!important;
+                max-width: 100%!important;
+                margin: 1rem 0 0 0!important;
+            }
         }
     }
 
@@ -75,6 +77,11 @@
             opacity: 1;
             animation: fadeIn;
             animation-duration: 1s;
+
+            @media (max-width: @device-width-small) {
+                flex-direction: column;
+                align-items: center;
+            }
         }
 
         .branchingScenario__btn {
@@ -86,16 +93,11 @@
             background-color: @white!important;
             color: @item-color!important;
 
-            &:hover {
-                background-color: @black!important;
-                color: @white!important;
+            @media (max-width: @device-width-small) {
+                max-width: 100%;
             }
 
-            @media (max-width: @device-width-small) {
-                width: 100%;
-                max-width: 100%;
-                margin: 1rem 0 0 0;
-            }
+            
         }
     }
     
@@ -128,6 +130,7 @@
     }
 
     &__scenario-container {
+        width: 100%;
         height: auto;
         display: inline-block;
         // margin-top: 1rem;
@@ -164,11 +167,40 @@
         &.full {
             width: 100%;
         }
+
+        &.bySide {
+            width: 100%;
+            display:flex;
+            @media (max-width: @device-width-small) {
+                flex-direction: column;
+            }
+
+            .branchingScenario__scenario-speech {
+                &:before {
+                    border: 0!important;
+                }
+                margin: 0;
+            }
+
+            img {
+                order: 2;
+                width: 50%;
+                min-width: 50%;
+
+                object-fit: cover;
+
+                @media (max-width: @device-width-small) {
+                    width: 100%;
+                    order: 1;
+                }
+            }
+        }
     }
 
     &__scenario-image {
         width: 100%;
         height: auto;
+       
     }
 
     &__scenario-speech {
@@ -199,6 +231,7 @@
             }
             border-radius: 0 0 1rem 1rem;
         }
+
         
         &:before {
             content: "";
@@ -222,5 +255,6 @@
             }
         }
     }
+
 
 }

@@ -11,6 +11,8 @@ define([
       'click .js-branching-continue-click': 'onContinueClicked',
       'click .js-branching-restart-click': 'onRestartClicked'
     },
+
+    _currentPath: null,
     
     preRender: function() {
       this.checkIfResetOnRevisit();
@@ -20,6 +22,8 @@ define([
       this.setReadyStatus();
       // show the first step of the scenario
       this.$('.branchingScenario__widget').eq(0).addClass('is-visible');
+      var pathID = this.$('.branchingScenario__widget').eq(0).data('path');
+      this._currentPath = pathID;
     },
 
     checkIfResetOnRevisit: function() {
@@ -36,13 +40,23 @@ define([
         $(event.currentTarget).parent().children('.branchingScenario__btn').prop('disabled', true); 
         // show which option was selected
         $(event.currentTarget).addClass('is-chosen');
-        // set the data path element to visible
+        // set the current data path element to inviisble & the next data path element to visible
         var pathID = $(event.currentTarget).data('path');
+        
+        if(pathID != this.model.get('_completeID')) {
+          this.$('[data-path="' + this._currentPath + '"]').removeClass('is-visible');
+        } else {
+          this.onContinueClicked();
+        }
+        
         this.$('[data-path="' + pathID + '"]').addClass('is-visible');
       
         // const el = document.getElementById('' + pathID + '');
         // const scrollTo = el.scrollTop();
         // window.scroll(scrollTo, 0);
+
+        this._currentPath = pathID;
+
 
         const divName = "#" + pathID + "";
         const element = document.querySelector(divName);
@@ -64,6 +78,9 @@ define([
       this.$('.branchingScenario__widget').eq(0).addClass('is-visible');
       this.$('.branchingScenario__btn').prop('disabled', false); 
       this.$('.branchingScenario__btn').removeClass('is-chosen'); 
+
+      var pathID = this.$('.branchingScenario__widget').eq(0).data('path');
+      this._currentPath = pathID;
     }
 
   },
