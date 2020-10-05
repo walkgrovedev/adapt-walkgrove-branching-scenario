@@ -43,10 +43,11 @@ define([
         // set the current data path element to inviisble & the next data path element to visible
         var pathID = $(event.currentTarget).data('path');
         
-        if(pathID != this.model.get('_completeID')) {
-          this.$('[data-path="' + this._currentPath + '"]').removeClass('is-visible');
-        } else {
+        if(pathID === this.model.get('_completeID')) {
           this.onContinueClicked();
+        }
+        if(this.model.get('_displayAll') === false) {
+          this.$('[data-path="' + this._currentPath + '"]').removeClass('is-visible');
         }
         
         this.$('[data-path="' + pathID + '"]').addClass('is-visible');
@@ -59,11 +60,13 @@ define([
 
 
         const divName = "#" + pathID + "";
-        const element = document.querySelector(divName);
+        const element = this.$(divName); // document.querySelector(divName);
         // scroll to element
-        setTimeout(function(){
-          element.scrollIntoView(false);
-         }, 100);
+        // if(this.model.get('_displayAll') === true) {
+        //   setTimeout(function(){
+        //     element.scrollIntoView(false);
+        //   }, 100);
+        // }
 
     },
 
