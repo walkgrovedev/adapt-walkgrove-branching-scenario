@@ -29,6 +29,160 @@
       "validators": [],
       "help": "This is the instruction text",
       "translatable": true
+    },
+    "_buttons": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "continue": {
+          "type": "string",
+          "required": true,
+          "default": "",
+          "title": "Continue button title",
+          "inputType": "Text",
+          "validators": [],
+          "help": "",
+          "translatable": true
+        },
+        "restart": {
+          "type": "string",
+          "required": true,
+          "default": "",
+          "title": "Restart button title",
+          "inputType": "Text",
+          "validators": [],
+          "help": "",
+          "translatable": true
+        }
+      }
+    },
+    "_completeID": {
+      "type": "string",
+      "required": true,
+      "translatable": false
+    },
+    "_items": {
+      "type": "array",
+      "required": true,
+      "title": "Action plan items",
+      "items": {
+        "type": "object",
+        "required": true,
+        "properties": {
+          "_id": {
+            "type": "string",
+            "required": true,
+            "default": "",
+            "title": "Scenario part id",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": false
+          },
+          "content": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "title": "Scenario part content",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
+          "_scenario": {
+            "type": "array",
+            "required": false,
+            "title": "Scenario sections",
+            "items": {
+              "type": "object",
+              "required": true,
+              "properties": {
+                "_layout": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Scenario section layout",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "",
+                  "translatable": false
+                },
+                 "_image": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Scenario section image",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "",
+                  "translatable": false
+                },
+                 "_speechPos": {
+                  "type": "string",
+                  "required": false,
+                  "default": "",
+                  "title": "Scenario section speech position",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "",
+                  "translatable": false
+                },
+                 "speech": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Scenario section speech content",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "",
+                  "translatable": true
+                }
+              }
+            }
+          },
+          "question": {
+            "type": "string",
+            "required": false,
+            "default": "",
+            "title": "Scenario part question",
+            "inputType": "Text",
+            "validators": [],
+            "help": "",
+            "translatable": true
+          },
+          "_choices": {
+            "type": "array",
+            "required": false,
+            "title": "Scenario sections",
+            "items": {
+              "type": "object",
+              "required": true,
+              "properties": {
+                "choice": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Choice content",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "",
+                  "translatable": true
+                },
+                 "_pathID": {
+                  "type": "string",
+                  "required": true,
+                  "default": "",
+                  "title": "Choice pathID",
+                  "inputType": "Text",
+                  "validators": [],
+                  "help": "",
+                  "translatable": false
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
