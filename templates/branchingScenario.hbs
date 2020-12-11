@@ -12,7 +12,7 @@
           <div class="branchingScenario__scenario-container" >
             {{#each _scenario}}
               <div class="branchingScenario__scenario {{_layout}}" >
-                {{#if _image}} <img class="branchingScenario__scenario-image" src="{{_image}}" {{#ifalt}}aria-label="{{alt}}"{{else}}aria-hidden="true"{{/if}} />{{/if}}
+                {{#if _image}} <img class="branchingScenario__scenario-image" src="{{_image}}" {{#if}}aria-label="{{alt}}"{{else}}aria-hidden="true"{{/if}} />{{/if}}
                 {{#if speech}} <div class="branchingScenario__scenario-speech {{_speechPos}}">{{{speech}}}</div>{{/if}}
               </div>
             {{/each}}
