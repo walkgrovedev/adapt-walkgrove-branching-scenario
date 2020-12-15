@@ -43,10 +43,11 @@ define([
         // set the current data path element to inviisble & the next data path element to visible
         var pathID = $(event.currentTarget).data('path');
         
-        if(pathID != this.model.get('_completeID')) {
-          this.$('[data-path="' + this._currentPath + '"]').removeClass('is-visible');
-        } else {
+        if(pathID === this.model.get('_completeID')) {
           this.onContinueClicked();
+        }
+        if(this.model.get('_displayAll') === false) {
+          this.$('[data-path="' + this._currentPath + '"]').removeClass('is-visible');
         }
         
         this.$('[data-path="' + pathID + '"]').addClass('is-visible');
@@ -55,15 +56,28 @@ define([
         // const scrollTo = el.scrollTop();
         // window.scroll(scrollTo, 0);
 
+        //audio?
+        if (Adapt.config.get('_sound')._isActive === true) {
+          this.model.get('_items').forEach((item) => {
+            if (item._id === pathID) {
+              if (item._audio) {
+                Adapt.trigger('audio:partial', {src: item._audio._src});
+              }
+            }
+          });
+        }
+
         this._currentPath = pathID;
 
 
         const divName = "#" + pathID + "";
-        const element = document.querySelector(divName);
+        const element = this.$(divName); // document.querySelector(divName);
         // scroll to element
-        setTimeout(function(){
-          element.scrollIntoView(false);
-         }, 100);
+        // if(this.model.get('_displayAll') === true) {
+        //   setTimeout(function(){
+        //     element.scrollIntoView(false);
+        //   }, 100);
+        // }
 
     },
 
@@ -81,6 +95,16 @@ define([
 
       var pathID = this.$('.branchingScenario__widget').eq(0).data('path');
       this._currentPath = pathID;
+
+      if (Adapt.config.get('_sound')._isActive === true) {
+        this.model.get('_items').forEach((item) => {
+          if (item._id === pathID) {
+            if (item._audio) {
+              Adapt.trigger('audio:partial', {src: item._audio._src});
+            }
+          }
+        });
+      }
     }
 
   },
