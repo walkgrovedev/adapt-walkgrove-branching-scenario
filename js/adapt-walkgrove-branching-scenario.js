@@ -72,6 +72,10 @@ define([
 
         const divName = "#" + pathID + "";
         const element = this.$(divName); // document.querySelector(divName);
+
+        //focus for accessibility
+        element.a11y_focus();
+
         // scroll to element
         // if(this.model.get('_displayAll') === true) {
         //   setTimeout(function(){
