@@ -74,7 +74,11 @@ define([
         const element = this.$(divName); // document.querySelector(divName);
 
         //focus for accessibility
-        element.a11y_focus();
+        if(element.find('.branchingScenario__scenario-speech').length) {
+          element.find('.branchingScenario__scenario-speech').a11y_focus();
+        }else{
+          element.find('.branchingScenario__question').a11y_focus();
+        }
 
         // scroll to element
         // if(this.model.get('_displayAll') === true) {
@@ -99,6 +103,12 @@ define([
 
       var pathID = this.$('.branchingScenario__widget').eq(0).data('path');
       this._currentPath = pathID;
+
+      if(this.$('.branchingScenario__widget').eq(0).find('.branchingScenario__scenario-speech').length) {
+        this.$('.branchingScenario__widget').eq(0).find('.branchingScenario__scenario-speech').a11y_focus();
+      }else{
+        this.$('.branchingScenario__widget').eq(0).find('.branchingScenario__question').a11y_focus();
+      }
 
       if (Adapt.config.get('_sound')._isActive === true) {
         this.model.get('_items').forEach((item) => {
